@@ -25,9 +25,19 @@ pub fn recite(start_bottles: u32, take_down: u32) -> String {
         } else {
             0
         };
+        let prv_bottles_plural = if inner_start_bottles > 1 {
+            "bottles"
+        } else {
+            "bottle"
+        };
+        let aftr_bottles_plural: &str = if next_bottles==1 {
+            "bottle"
+        } else {
+            "bottles"
+        };
 
         recite_string.push_str(&format!(
-            "{} green bottles hanging on the wall,\n{} green bottles hanging on the wall,\nAnd if one green bottle should accidentally fall,\nThere'll be {} green bottles hanging on the wall.\n\n",
+            "{} green {prv_bottles_plural} hanging on the wall,\n{} green {prv_bottles_plural} hanging on the wall,\nAnd if one green bottle should accidentally fall,\nThere'll be {} green {aftr_bottles_plural} hanging on the wall.\n\n",
     integer_to_en_us(inner_start_bottles).chars().next().unwrap().to_uppercase().collect::<String>() + &integer_to_en_us(inner_start_bottles)[1..],
     integer_to_en_us(inner_start_bottles).chars().next().unwrap().to_uppercase().collect::<String>() + &integer_to_en_us(inner_start_bottles)[1..],
             integer_to_en_us(next_bottles)
