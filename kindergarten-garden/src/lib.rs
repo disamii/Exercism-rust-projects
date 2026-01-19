@@ -17,7 +17,7 @@ pub fn plants(diagram: &str, student: &str) -> Vec<&'static str> {
     }
 
     let rows: Vec<&str> = diagram.lines().collect();
-    let mut result = Vec::new();
+    let mut result: Vec<&str> = Vec::new();
 
     for row in &rows {
         let slice = &row[pos * 2 .. pos * 2 + 2];
