@@ -1,5 +1,3 @@
-use std::os::windows;
-
 #[derive(Debug, PartialEq, Eq)]
 pub enum Comparison {
     Equal,

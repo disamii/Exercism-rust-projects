@@ -15,7 +15,7 @@ pub trait Planet {
 macro_rules! impl_planet {
     ($planet:ident, $orbital_period:expr) => {
         pub struct $planet {
-            seconds: u64,
+            _seconds: u64,
         }
         impl Planet for $planet {
             fn years_during(d: &Duration) -> f64 {

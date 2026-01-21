@@ -3,7 +3,7 @@ pub mod graph {
 
     use crate::graph::graph_items::{
         edge::Edge,
-        node::{self, Node},
+        node::{ Node},
     };
 
     pub mod graph_items {
