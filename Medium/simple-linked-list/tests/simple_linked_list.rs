@@ -105,11 +105,13 @@ fn reverse() {
     assert_eq!(rev_list.pop(), Some(2));
     assert_eq!(rev_list.pop(), Some(3));
     assert_eq!(rev_list.pop(), None);
+    
 }
 
 #[test]
 #[ignore]
 fn into_vector() {
+
     let mut v = Vec::new();
     let mut s = SimpleLinkedList::new();
     for i in 1..4 {
