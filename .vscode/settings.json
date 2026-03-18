@@ -1,6 +1,7 @@
 {
     "rust-analyzer.linkedProjects": [
-    "/home/samsonm/Downloads/software/Exercism-rust-projects/Cargo.toml"
-]
+    "/home/disami/Downloads/Software/Exercism-rust-projects/Cargo.toml"
+],
+"rust-analyzer.checkOnSave": false
 
 }
