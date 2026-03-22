@@ -1,5 +1,3 @@
-use std::{env::current_exe, thread::current};
-
 // this module adds some functionality based on the required implementations
 // here like: `LinkedList::pop_back` or `Clone for LinkedList<T>`
 // You are free to use anything in it, but it's mainly for the test framework.
@@ -86,9 +84,7 @@ impl<T> Cursor<'_, T> {
         self.current.as_mut().map(|node| &mut node.data)
     }
 
-    /// Remove and return the element at the current position and move the cursor
-    /// to the neighboring element that's closest to the back. This can be
-    /// either the next or previous position.
+
     pub fn take(&mut self) -> Option<T>
     where
         T: Copy,
@@ -98,18 +94,28 @@ impl<T> Cursor<'_, T> {
         Some(current.data)
     }
 
-    pub fn insert_after(&mut self, _element: T) {
-        let current = self.current.take();
-        let node = Node {
-            data: _element,
-            next: current.unwrap().next,
-            prev: current,
-        };
-        self.current = Some(node)
+    pub fn insert_after(&mut self, element: T) {
+        let current = self.current.take().unwrap();
+
+        let new = Box::new(Node {
+            data: element,
+            next: current.next.take(),
+            prev: None,
+        });
+        current.next = Some(new);
+        self.current = current.next.as_deref_mut();
     }
 
     pub fn insert_before(&mut self, _element: T) {
-        todo!()
+        let current = self.current.take().unwrap();
+
+        let new = Box::new(Node {
+            data: _element,
+            next: None,
+            prev: current.prev.take(),
+        });
+        current.prev = Some(new);
+        self.current = current.prev.as_deref_mut();
     }
 }
 
@@ -117,6 +123,9 @@ impl<'a, T> Iterator for Iter<'a, T> {
     type Item = &'a T;
 
     fn next(&mut self) -> Option<&'a T> {
-        todo!()
+        let current=self.current.take()?;
+        self.current=current.next.as_deref();
+        self.current.as_ref().map(|node|&node.data)
+
     }
 }
