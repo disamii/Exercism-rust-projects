@@ -84,11 +84,9 @@ impl<T> Cursor<'_, T> {
         self.current.as_mut().map(|node| &mut node.data)
     }
 
-
-    pub fn take(&mut self) -> Option<T>
+    pub fn take(&mut self) -> Option<T> 
     where
-        T: Copy,
-    {
+    T: Copy,{
         let current = self.current.take()?;
         self.current = current.next.as_deref_mut().or(current.prev.as_deref_mut());
         Some(current.data)
@@ -123,9 +121,8 @@ impl<'a, T> Iterator for Iter<'a, T> {
     type Item = &'a T;
 
     fn next(&mut self) -> Option<&'a T> {
-        let current=self.current.take()?;
-        self.current=current.next.as_deref();
-        self.current.as_ref().map(|node|&node.data)
-
+        let current = self.current.take()?;
+        self.current = current.next.as_deref();
+        self.current.as_ref().map(|node| &node.data)
     }
 }
