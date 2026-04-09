@@ -1,5 +1,5 @@
 [package]
-name = "grep"
+name = "rectangles"
 version = "0.1.0"
 edition = "2024"
 
@@ -7,4 +7,3 @@ edition = "2024"
 # The full list of available libraries is here:
 # https://github.com/exercism/rust-test-runner/blob/main/local-registry/Cargo.toml
 [dependencies]
-anyhow = "1.0"
